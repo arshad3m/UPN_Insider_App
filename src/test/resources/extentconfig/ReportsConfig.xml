@@ -14,13 +14,13 @@
         <protocol>https</protocol>
         
         <!-- title of the document -->
-        <documentTitle>Norkart Automation Reports</documentTitle>
+        <documentTitle>Upnorway Insider App Automation Reports</documentTitle>
         
         <!-- report name - displayed at top-nav -->
         <reportName>Automation Report for</reportName>
         
         <!-- report headline - displayed at top-nav, after reportHeadline -->
-        <reportHeadline>Norkart Regression Test Suite</reportHeadline>
+        <reportHeadline>UPN Insider App Regression Test Suite</reportHeadline>
         
         <!-- global date format override -->
         <!-- defaults to yyyy-MM-dd -->

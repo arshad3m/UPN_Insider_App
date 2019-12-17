@@ -1,4 +1,4 @@
-package com.norkart.utilities;
+package com.upnorway.utilities;
 import java.util.Properties;
 import javax.activation.DataHandler;
 import javax.activation.DataSource;

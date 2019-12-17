@@ -1,6 +1,6 @@
-package com.norkart.pages;
+package com.upnorway.pages;
 
-import com.norkart.base.TestBase;
+import com.upnorway.base.TestBase;
 
 public class Complaint extends TestBase {
 

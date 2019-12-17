@@ -1,4 +1,4 @@
-package com.norkart.utilities;
+package com.upnorway.utilities;
 
 
 import java.io.FileInputStream;

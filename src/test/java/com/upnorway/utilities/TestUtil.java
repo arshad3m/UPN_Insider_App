@@ -1,4 +1,4 @@
-package com.norkart.utilities;
+package com.upnorway.utilities;
 
 import java.io.File;
 import java.io.IOException;
@@ -12,7 +12,7 @@ import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.testng.annotations.DataProvider;
 
-import com.norkart.base.TestBase;
+import com.upnorway.base.TestBase;
 
 public class TestUtil extends TestBase {
 

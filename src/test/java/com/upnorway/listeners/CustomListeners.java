@@ -1,4 +1,4 @@
-package com.norkart.listeners;
+package com.upnorway.listeners;
 
 import java.io.IOException;
 import java.net.InetAddress;
@@ -15,13 +15,13 @@ import org.testng.ITestResult;
 import org.testng.Reporter;
 import org.testng.SkipException;
 
-import com.norkart.base.TestBase;
-import com.norkart.utilities.MonitoringMail;
-import com.norkart.utilities.TestConfig;
-import com.norkart.utilities.TestUtil;
 import com.relevantcodes.extentreports.DisplayOrder;
 import com.relevantcodes.extentreports.ExtentReports;
 import com.relevantcodes.extentreports.LogStatus;
+import com.upnorway.base.TestBase;
+import com.upnorway.utilities.MonitoringMail;
+import com.upnorway.utilities.TestConfig;
+import com.upnorway.utilities.TestUtil;
 
 public class CustomListeners extends TestBase implements ITestListener,ISuiteListener {
 

@@ -1,4 +1,4 @@
-package com.norkart.base;
+package com.upnorway.base;
 
 import static org.testng.Assert.assertTrue;
 
@@ -50,12 +50,12 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.BeforeTest;
 
-import com.norkart.utilities.ExcelReader;
-import com.norkart.utilities.ExtentManager;
-import com.norkart.utilities.TestUtil;
 import com.relevantcodes.extentreports.ExtentReports;
 import com.relevantcodes.extentreports.ExtentTest;
 import com.relevantcodes.extentreports.LogStatus;
+import com.upnorway.utilities.ExcelReader;
+import com.upnorway.utilities.ExtentManager;
+import com.upnorway.utilities.TestUtil;
 
 import java.sql.DriverManager;
 import java.sql.ResultSet;

@@ -1,9 +1,9 @@
-package com.norkart.testcases;
+package com.upnorway.testcases;
 
 import org.testng.annotations.Test;
 
-import com.norkart.base.TestBase;
-import com.norkart.pages.Complaint;
+import com.upnorway.base.TestBase;
+import com.upnorway.pages.Complaint;
 
 public class Firsttest extends TestBase{
 	
