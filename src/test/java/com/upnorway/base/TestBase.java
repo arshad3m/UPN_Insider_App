@@ -599,9 +599,9 @@ public class TestBase {
 		driver.findElement(By.xpath(OR.getProperty("email_XPATH"))).sendKeys(config.getProperty("username"));
 
 		driver.findElement(By.xpath(OR.getProperty("password_XPATH"))).sendKeys(config.getProperty("password"));
-		Thread.sleep(4000);
+		Thread.sleep(2000);
 
-		//driver.findElement(By.xpath(OR.getProperty("login_XPATH"))).click();
+		//driver.findElement(By.xpsssssath(OR.getProperty("login_XPATH"))).click();
 		
 		//click("login_XPATH");
 		
@@ -654,7 +654,7 @@ public class TestBase {
 	public void beforeTest() throws InterruptedException {
 		closeNewTab();
 
-		driver.get(config.getProperty("testsiteurl"));
+		//driver.get(config.getProperty("testsiteurl"));
 	}
 
 	@AfterTest
