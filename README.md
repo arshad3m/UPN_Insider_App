@@ -1,4 +1,4 @@
-# SLIIT Automated Regression Test Suite
+# Upnorway Insider App Automated Tests
 
 Steps to run the test:
 ----------------------
