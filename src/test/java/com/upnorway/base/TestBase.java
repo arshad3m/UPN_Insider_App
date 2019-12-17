@@ -599,7 +599,16 @@ public class TestBase {
 		driver.findElement(By.xpath(OR.getProperty("email_XPATH"))).sendKeys(config.getProperty("username"));
 
 		driver.findElement(By.xpath(OR.getProperty("password_XPATH"))).sendKeys(config.getProperty("password"));
-		driver.findElement(By.xpath(OR.getProperty("login_XPATH"))).click();
+		Thread.sleep(4000);
+
+		//driver.findElement(By.xpath(OR.getProperty("login_XPATH"))).click();
+		
+		//click("login_XPATH");
+		
+		WebElement element = driver.findElement(By.xpath(OR.getProperty("login_XPATH")));
+		wait.until(ExpectedConditions.elementToBeClickable(element));
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		js.executeScript("arguments[0].click();", element);
 		
 		Thread.sleep(4000);
 
