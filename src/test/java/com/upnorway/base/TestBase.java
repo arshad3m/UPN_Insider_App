@@ -594,19 +594,15 @@ public class TestBase {
 
 
 		
-		driver.findElement(By.xpath(OR.getProperty("login_XPATH"))).click();;
+
+
+		driver.findElement(By.xpath(OR.getProperty("email_XPATH"))).sendKeys(config.getProperty("username"));
+
+		driver.findElement(By.xpath(OR.getProperty("password_XPATH"))).sendKeys(config.getProperty("password"));
+		driver.findElement(By.xpath(OR.getProperty("login_XPATH"))).click();
+		
 		Thread.sleep(4000);
 
-		driver.findElement(By.xpath(OR.getProperty("sign_in_email_XPATH"))).sendKeys("arshadm@99x.lk");
-
-		driver.findElement(By.xpath(OR.getProperty("next_XPATH"))).click();
-		Thread.sleep(4000);
-
-		driver.findElement(By.xpath(OR.getProperty("pasword_XPATH"))).sendKeys("intel%1234");
-		driver.findElement(By.xpath(OR.getProperty("signin_XPATH"))).click();;
-		Thread.sleep(4000);
-
-		driver.findElement(By.xpath(OR.getProperty("yes_XPATH"))).click();;
 
 
 

@@ -12,9 +12,9 @@ public class Firsttest extends TestBase{
 		
 	//	login();
 		
-		Complaint comp=new Complaint();
+	//	Complaint comp=new Complaint();
 		
-		comp.createNewComplaint();
+	//	comp.createNewComplaint();
 				
 	}
 
