@@ -14,7 +14,7 @@ public class Dashboard_test extends TestBase {
 
 	Dashboard db = new Dashboard();
 
-	@Test(enabled = false, dataProviderClass = TestUtil.class, dataProvider = "dp", priority = 1)
+	@Test(enabled = true, dataProviderClass = TestUtil.class, dataProvider = "dp", priority = 1)
 	public void changeName_happyPath(Hashtable<String, String> data) {
 
 		if (!data.get("runmode").equals("Y")) {
@@ -31,7 +31,7 @@ public class Dashboard_test extends TestBase {
 		db.saveProfile();
 	}
 
-	@Test(enabled = false, dataProviderClass = TestUtil.class, dataProvider = "dp", priority = 2)
+	@Test(enabled = true, dataProviderClass = TestUtil.class, dataProvider = "dp", priority = 2)
 	public void profileChangeValidations(Hashtable<String, String> data) {
 
 		if (!data.get("runmode").equals("Y")) {
@@ -48,7 +48,7 @@ public class Dashboard_test extends TestBase {
 		db.saveProfile();
 	}
 
-	@Test(enabled = false, dataProviderClass = TestUtil.class, dataProvider = "dp", priority = 3)
+	@Test(enabled = true, dataProviderClass = TestUtil.class, dataProvider = "dp", priority = 3)
 	public void changePasswordHappyPath(Hashtable<String, String> data) throws IOException, Exception {
 
 		if (!data.get("runmode").equals("Y")) {
