@@ -3,6 +3,18 @@ package com.upnorway.pages;
 import com.upnorway.base.TestBase;
 
 public class Dashboard extends TestBase {
+	
+	public void loginEmail(String email) {
+		type("loginEmail_XPATH",email);
+	}
+	
+	public void loginPassword(String pwd) {
+		type("loginPassword_XPATH",pwd);
+	}
+	
+	public void clickEnter() {
+		click("fpButton_Enter_XPATH");
+	}
 
 	public void goToProfileMenu() {
 		click("Menu_XPATH");
@@ -54,8 +66,7 @@ public class Dashboard extends TestBase {
 	}
 
 	public void changePwd() {
-click("buttonChangepwd_XPATH");
+		click("buttonChangepwd_XPATH");
 	}
 
-	
 }
