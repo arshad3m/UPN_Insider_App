@@ -12,9 +12,9 @@
 	<test name="Home page">
 		<classes>
 
+			<class name="com.upnorway.testcases.Login_test" /> 
 			<class name="com.upnorway.testcases.Dashboard_test" />
 
-			
 		</classes>
 	</test>
 </suite>

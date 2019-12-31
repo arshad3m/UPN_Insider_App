@@ -184,7 +184,7 @@ public class TestBase {
 			wait = new WebDriverWait(driver, 25);
 			action = new Actions(driver);
 			
-			login();
+	//		login();
 		}
 
 	}	
@@ -589,7 +589,7 @@ public class TestBase {
 		return text;	
 		
 	}
-	
+	/*
 	public void login() throws InterruptedException {
 
 
@@ -617,7 +617,7 @@ public class TestBase {
 
 
 		
-	}
+	}*/
 
 
 	@AfterSuite
@@ -654,7 +654,7 @@ public class TestBase {
 	public void beforeTest() throws InterruptedException {
 		closeNewTab();
 
-		//driver.get(config.getProperty("testsiteurl"));
+		driver.get(config.getProperty("testsiteurl"));
 	}
 
 	@AfterTest
