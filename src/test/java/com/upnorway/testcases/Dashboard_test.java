@@ -71,7 +71,7 @@ public class Dashboard_test extends TestBase {
 		String validationMessage = driver.findElement(By.xpath(OR.getProperty("cpSuccessmessage_XPATH"))).getText();
 		;
 
-		verifyEquals(validationMessage, data.get("message"));
+		verifyEquals(data.get("message"),validationMessage);
 
 	}
 
@@ -95,9 +95,9 @@ public class Dashboard_test extends TestBase {
 
 		Thread.sleep(3000);
 
-		String validationMessage = driver.findElement(By.xpath(OR.getProperty("cpValidationMessage_XPATH"))).getText();;
+		String validationMessage = driver.findElement(By.xpath(OR.getProperty("cpValidationMessage_XPATH"))).getText();
 
-		verifyEquals(validationMessage, data.get("message"));
+		verifyEquals(data.get("message"),validationMessage);
 
 	}
 
