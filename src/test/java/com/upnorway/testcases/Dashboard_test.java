@@ -69,7 +69,7 @@ public class Dashboard_test extends TestBase {
 		Thread.sleep(3000);
 
 		String validationMessage = driver.findElement(By.xpath(OR.getProperty("cpSuccessmessage_XPATH"))).getText();
-		;
+		
 
 		verifyEquals(data.get("message"),validationMessage);
 
@@ -101,4 +101,72 @@ public class Dashboard_test extends TestBase {
 
 	}
 
+	@Test(enabled = true, dataProviderClass = TestUtil.class, dataProvider = "dp", priority = 5)
+	public void viewAll_ChatNotifications(Hashtable<String, String> data) throws Exception {
+
+		if (!data.get("runmode").equals("Y")) {
+
+			throw new SkipException("Skipping the test case as the Run mode for data set is NO");
+		}
+
+		db.loginEmail(data.get("email"));
+		db.loginPassword(data.get("password"));
+		db.clickEnter();
+		db.clickChatNotificationicon();
+		
+		Thread.sleep(3000);
+
+		String verifyTopic = driver.findElement(By.xpath(OR.getProperty("chatNotificatioTitle_XPATH"))).getText();
+
+		verifyEquals(data.get("title"),verifyTopic);
+		
+		db.viewAllChat();
+		
+		Thread.sleep(3000);
+
+		String verifyMessage = driver.findElement(By.xpath(OR.getProperty("ViewAllChatTopic_XPATH"))).getText();
+
+		verifyEquals(data.get("message"),verifyMessage);
+	
+	}
+	
+	@Test(enabled = true, dataProviderClass = TestUtil.class, dataProvider = "dp", priority = 6)
+	public void checkNotificationMenu(Hashtable<String, String> data) throws Exception {
+
+		if (!data.get("runmode").equals("Y")) {
+
+			throw new SkipException("Skipping the test case as the Run mode for data set is NO");
+		}
+
+		db.loginEmail(data.get("email"));
+		db.loginPassword(data.get("password"));
+		db.clickEnter();
+		db.clickNotificationIcon();
+		
+		Thread.sleep(3000);
+
+		String verifyTopic = driver.findElement(By.xpath(OR.getProperty("notificationTitle_XPATH"))).getText();
+
+		verifyEquals(data.get("title"),verifyTopic);
+	}
+	
+	@Test(enabled = true, dataProviderClass = TestUtil.class, dataProvider = "dp", priority = 7)
+	public void checkRemindersMenu(Hashtable<String, String> data) throws Exception {
+
+		if (!data.get("runmode").equals("Y")) {
+
+			throw new SkipException("Skipping the test case as the Run mode for data set is NO");
+		}
+
+		db.loginEmail(data.get("email"));
+		db.loginPassword(data.get("password"));
+		db.clickEnter();
+		db.clickReminderIcon();
+		
+		Thread.sleep(3000);
+
+		String verifyTopic = driver.findElement(By.xpath(OR.getProperty("reminderTitle_XPATH"))).getText();
+
+		verifyEquals(data.get("title"),verifyTopic);
+	}
 }

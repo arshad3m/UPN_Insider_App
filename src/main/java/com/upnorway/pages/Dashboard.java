@@ -69,4 +69,19 @@ public class Dashboard extends TestBase {
 		click("buttonChangepwd_XPATH");
 	}
 
+	public void clickChatNotificationicon() {
+		click("chatNotification_XPATH");
+	}
+	
+	public void viewAllChat() {
+		click("viewAllChat_XPATH");
+	}
+	
+	public void clickNotificationIcon() {
+		click("notificationIcon_XPATH");
+	}
+	
+	public void clickReminderIcon() {
+		click("reminderIcon_XPATH");
+	}
 }
