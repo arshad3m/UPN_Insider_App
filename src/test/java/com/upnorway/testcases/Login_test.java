@@ -7,12 +7,14 @@ import org.testng.SkipException;
 import org.testng.annotations.Test;
 
 import com.upnorway.base.TestBase;
+import com.upnorway.pages.Dashboard;
 import com.upnorway.pages.LoginPage;
 import com.upnorway.utilities.TestUtil;
 
 public class Login_test extends TestBase{
 
 	LoginPage db = new LoginPage();
+	Dashboard dash_board = new Dashboard();
 	
 	//Verify the email field in the forgot password section
 	
@@ -32,7 +34,7 @@ public class Login_test extends TestBase{
 		String validationMessage = driver.findElement(By.xpath(OR.getProperty("fpemailValidationmsg_XPATH"))).getText();
 
 		verifyEquals(data.get("message"),validationMessage);
-		
+
 	}
 	
 	//Attempt to add an invalid email for 6 times to verify attempt email error
@@ -55,7 +57,7 @@ public class Login_test extends TestBase{
 		String validationMessage = driver.findElement(By.xpath(OR.getProperty("fpattemptEmailmsg_XPATH"))).getText();
 
 		verifyEquals(data.get("message"),validationMessage);
-		
+
 	}
 	
 	//Verify the error message which gets after provide empty/invalid code for Change password
@@ -83,7 +85,7 @@ public class Login_test extends TestBase{
 		String validationMessage = driver.findElement(By.xpath(OR.getProperty("cpValidationmsg_XPATH"))).getText();
 
 		verifyEquals(data.get("message"),validationMessage);
-		
+
 	}
 	
 	//Verify the error message when the email is null in the login page
@@ -104,7 +106,7 @@ public class Login_test extends TestBase{
 		String validationMessage = driver.findElement(By.xpath(OR.getProperty("nullEmailValidationmsg_XPATH"))).getText();
 
 		verifyEquals(data.get("message"),validationMessage);
-		
+
 	}
 	//Verify the error message when the password is null in the login page
 	
@@ -124,7 +126,7 @@ public class Login_test extends TestBase{
 		String validationMessage = driver.findElement(By.xpath(OR.getProperty("nullPwdValidationmsg_XPATH"))).getText();
 
 		verifyEquals(data.get("message"),validationMessage);
-		
+
 	}
 	
 	////Verify the error message when the invalid email/password is provided in the login page
@@ -145,7 +147,7 @@ public class Login_test extends TestBase{
 		String validationMessage = driver.findElement(By.xpath(OR.getProperty("errorValidationmsg_XPATH"))).getText();
 
 		verifyEquals(data.get("message"),validationMessage);
-		
+
 	}
 	
 	//Successfully login into the login page
@@ -166,6 +168,8 @@ public class Login_test extends TestBase{
 		String validationMessage = driver.findElement(By.xpath(OR.getProperty("dashBoardTitle_XPATH"))).getText();
 
 		verifyEquals(data.get("title"),validationMessage);
+		
+		dash_board.logOut();
 		
 	}
 }

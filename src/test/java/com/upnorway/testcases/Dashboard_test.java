@@ -22,9 +22,6 @@ public class Dashboard_test extends TestBase {
 			throw new SkipException("Skipping the test case as the Run mode for data set is NO");
 		}
 
-		db.loginEmail(data.get("email"));
-		db.loginPassword(data.get("password"));
-		db.clickEnter();
 		db.goToMyProfile();
 		db.enterFirstName(data.get("fname")); // b.enterFirstName("Gihan")
 		db.enterLastName(data.get("lname"));
@@ -39,9 +36,7 @@ public class Dashboard_test extends TestBase {
 			throw new SkipException("Skipping the test case as the Run mode for data set is NO");
 		}
 
-		db.loginEmail(data.get("email"));
-		db.loginPassword(data.get("password"));
-		db.clickEnter();
+
 		db.goToMyProfile();
 		db.enterFirstName(data.get("fname"));
 		db.enterLastName(data.get("lname"));
@@ -56,9 +51,7 @@ public class Dashboard_test extends TestBase {
 			throw new SkipException("Skipping the test case as the Run mode for data set is NO");
 		}
 
-		db.loginEmail(data.get("email"));
-		db.loginPassword(data.get("password"));
-		db.clickEnter();
+
 		db.goToMyProfile();
 		db.ChangePassword();
 		db.enterCurrentPwd(data.get("currentpwd"));
@@ -83,9 +76,7 @@ public class Dashboard_test extends TestBase {
 			throw new SkipException("Skipping the test case as the Run mode for data set is NO");
 		}
 
-		db.loginEmail(data.get("email"));
-		db.loginPassword(data.get("password"));
-		db.clickEnter();
+
 		db.goToMyProfile();
 		db.ChangePassword();
 		db.enterCurrentPwd(data.get("currentpwd"));
@@ -109,9 +100,7 @@ public class Dashboard_test extends TestBase {
 			throw new SkipException("Skipping the test case as the Run mode for data set is NO");
 		}
 
-		db.loginEmail(data.get("email"));
-		db.loginPassword(data.get("password"));
-		db.clickEnter();
+
 		db.clickChatNotificationicon();
 		
 		Thread.sleep(3000);
@@ -138,9 +127,7 @@ public class Dashboard_test extends TestBase {
 			throw new SkipException("Skipping the test case as the Run mode for data set is NO");
 		}
 
-		db.loginEmail(data.get("email"));
-		db.loginPassword(data.get("password"));
-		db.clickEnter();
+
 		db.clickNotificationIcon();
 		
 		Thread.sleep(3000);
@@ -158,9 +145,7 @@ public class Dashboard_test extends TestBase {
 			throw new SkipException("Skipping the test case as the Run mode for data set is NO");
 		}
 
-		db.loginEmail(data.get("email"));
-		db.loginPassword(data.get("password"));
-		db.clickEnter();
+
 		db.clickReminderIcon();
 		
 		Thread.sleep(3000);

@@ -46,6 +46,8 @@ public class Dashboard extends TestBase {
 
 	public void logOut() {
 
+		goToProfileMenu();
+		click("logout_XPATH");
 	}
 
 	public void ChangePassword() {
