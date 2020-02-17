@@ -12,6 +12,7 @@
 	<test name="Home page">
 		<classes>
 
+			<class name="com.upnorway.testcases.Partner_test" />
 			<class name="com.upnorway.testcases.Dashboard_test" />
 
 		</classes>
