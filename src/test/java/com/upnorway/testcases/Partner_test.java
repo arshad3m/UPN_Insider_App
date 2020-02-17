@@ -14,8 +14,8 @@ public class Partner_test extends TestBase{
 	
 	Partners partner = new Partners();
 	
-	@Test(enabled = false, dataProviderClass = TestUtil.class, dataProvider = "dp", priority = 1)
-	public void addNewPartner(Hashtable<String, String> data) throws InterruptedException, IOException {
+	@Test(enabled = true, dataProviderClass = TestUtil.class, dataProvider = "dp", priority = 1)
+	public void add_New_Partner(Hashtable<String, String> data) throws InterruptedException, IOException {
 		
 		if (!data.get("runmode").equals("Y")) {
 
@@ -50,8 +50,8 @@ public class Partner_test extends TestBase{
 	}
 	
 	
-	@Test(enabled=false)
-	public void verifyPartnerList() throws IOException {
+	@Test(enabled=true)
+	public void verify_Partner_List() throws IOException {
 		
 		click("partnersMenu_XPATH");
 		
@@ -61,7 +61,7 @@ public class Partner_test extends TestBase{
 	
 	
 	@Test(enabled = true, dataProviderClass = TestUtil.class, dataProvider = "dp", priority = 1)
-	public void AddPartnerFieldValidation(Hashtable<String, String> data) throws InterruptedException, IOException {
+	public void Add_Partner_Field_Validation(Hashtable<String, String> data) throws InterruptedException, IOException {
 		
 		if (!data.get("runmode").equals("Y")) {
 
@@ -99,6 +99,14 @@ public class Partner_test extends TestBase{
 
 		partner.enterPhoneBooking(data.get("phonebooking"));
 		partner.verifySaveButtonIsDisabled();
+		
+		//clear mandatory data to verify  validation message pops up
+		partner.enterPhoneBooking(data.get("wrongphone"));
+		partner.verifyFieldValidationMessage("phoneBooking_XPATH", data.get("phonevalidation"));
+		
+		//re-enter correct phone number
+		partner.enterPhoneBooking(data.get("phonebooking"));
+
 
 		partner.enterEmailBooking(data.get("emailbooking"));
 		partner.verifySaveButtonIsDisabled();
@@ -116,9 +124,10 @@ public class Partner_test extends TestBase{
 		partner.enterDescription(data.get("description"));
 		partner.verifySaveButtonIsEnabled();
 		
-		//clear mandatory data to verify save button gets disabled
-		partner.enterEmailBooking("");
+		//clear mandatory data to verify save button gets disabled and validation message pops up
+		partner.enterEmailBooking(data.get("wrongemail"));
 		partner.verifySaveButtonIsDisabled();
+		partner.verifyFieldValidationMessage("emailBooking_XPATH", data.get("emailvalidation"));
 
 		
 		//re-enter the mandatory data
@@ -130,6 +139,65 @@ public class Partner_test extends TestBase{
 		
 		//Verify the added partner is shown first in the partner list
 		verifyEqualsIgnoreCase(data.get("company"), partner.getFirstCardText());
+	}
+	
+	@Test(enabled=true)
+	public void verify_Company_Info() throws IOException {
+		
+		click("partnersMenu_XPATH");
+		partner.readPartnerCardInfo(1);
+
+		click("firstcard_XPATH");
+		partner.readPartnerAccountInfo();
+		
+		verifyEqualsIgnoreCase(Partners.companyName.trim(), Partners.account_CompanyName);
+		verifyEqualsIgnoreCase(Partners.name.trim(), Partners.account_name);
+		verifyEqualsIgnoreCase(Partners.address.trim(), Partners.account_Address);
+		verifyEqualsIgnoreCase(Partners.phone.trim(), Partners.account_phone);
+
+		
+		
+	}
+	
+	@Test(enabled=true)
+	public void verify_PartnerEdit() throws IOException {
+		
+		click("partnersMenu_XPATH");
+		click("firstcard_XPATH");
+		
+		//Read partner account information of the first card
+		partner.readPartnerAccountInfo();
+		click("editPartnerCompanyInfo_XPATH");
+	
+		//Verify the read info before clicking on the edit and after clicking are equal
+		verifyEqualsIgnoreCase(Partners.account_CompanyName, partner.getValueOfInputField("companyName_XPATH"));
+		verifyEqualsIgnoreCase(Partners.account_Address, partner.getValueOfInputField("address_XPATH"));
+//		verifyEqualsIgnoreCase(Partners.account_name, partner.getValueOfInputField("contactPerson_A_XPATH"));
+		verifyEqualsIgnoreCase(Partners.account_phone, partner.getValueOfInputField("partnerPhone_XPATH"));
+
+		
+		
+	}
+	
+	
+	@Test(enabled = true, dataProviderClass = TestUtil.class, dataProvider = "dp", priority = 4)
+	public void update_Partner_Company_Info(Hashtable<String, String> data) throws IOException, InterruptedException {
+		if (!data.get("runmode").equals("Y")) {
+
+			throw new SkipException("Skipping the test case as the Run mode for data set is NO");
+		}
+		
+		click("partnersMenu_XPATH");
+		click("firstcard_XPATH");
+		click("editPartnerCompanyInfo_XPATH");
+
+		partner.enterBrandName(data.get("brand"));
+		partner.enterEmail(data.get("email"));
+		partner.enterPhone(data.get("phone"));
+		partner.UpdatePartner();
+		verifyEqualsIgnoreCase(data.get("toastmessage"), partner.getToastMessageText());
+		
+
 	}
 
 }

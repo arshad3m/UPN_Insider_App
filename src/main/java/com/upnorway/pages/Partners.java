@@ -2,6 +2,8 @@ package com.upnorway.pages;
 
 import static org.testng.Assert.assertTrue;
 
+import java.io.IOException;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.interactions.Actions;
 
@@ -9,6 +11,22 @@ import com.relevantcodes.extentreports.LogStatus;
 import com.upnorway.base.TestBase;
 
 public class Partners extends TestBase{
+	
+	public static String companyName ="";
+	public static String address="";
+	public static String phone="";
+	public static String name="";
+	String postalcode="";
+	String country="";
+	String email="";
+	String brandName="";
+	
+	public static String account_CompanyName="";
+	public static String account_Address="";
+	public static String account_phone="";
+	public static String account_name="";
+
+	
 	
 	public void uploadAvatar(String locator, String path) throws InterruptedException {
 		
@@ -107,6 +125,10 @@ public class Partners extends TestBase{
 		click("savePartner_XPATH");
 	}
 	
+	public void UpdatePartner() {
+		click("update_XPATH");
+	}
+	
 	
 	public String getToastMessageText() {
 		String toastmessage=getTextAttribute("toast_XPATH");
@@ -137,5 +159,46 @@ public class Partners extends TestBase{
 		test.log(LogStatus.INFO, "Verified Saved button is enabled");
 
 	}
+	
+	public void verifyFieldValidationMessage(String locator, String message) throws IOException {
+		String xpath=OR.getProperty(locator)+"/../div/p";
+		String text= driver.findElement(By.xpath(xpath)).getAttribute("innerText");
+		verifyEquals(message, text);
+	}
+	
+	
+	public void readPartnerCardInfo(int position) {
+		
+		String xpath="("+OR.getProperty("cardList_XPATH")+")["+position+"]";
+		
+		 companyName =driver.findElement(By.xpath(xpath)).getAttribute("innerText");;
+		 address=driver.findElement(By.xpath(xpath+"/../div[2]")).getAttribute("innerText");
+		 phone=driver.findElement(By.xpath(xpath+"/../div[3]")).getAttribute("innerText");
+		 name=driver.findElement(By.xpath(xpath+"/../div[4]")).getAttribute("innerText");
+		 email="";
+		 postalcode="";
+		 country="";
+		 brandName="";
+				
+	}
+	
+	
+	public void readPartnerAccountInfo() {
+		
+		account_CompanyName=driver.findElement(By.xpath("//label[text()='Company Name']/../div")).getAttribute("innerText");
+		account_Address=driver.findElement(By.xpath("//label[text()='Address']/../div")).getAttribute("innerText");
+		account_phone=driver.findElement(By.xpath("//label[text()='Phone']/../div")).getAttribute("innerText");
+		account_name=driver.findElement(By.xpath("//label[text()='Name']/../div")).getAttribute("innerText");
+
+	}
+	
+	
+	public String getValueOfInputField(String xpath) {
+		
+		test.log(LogStatus.INFO, "Reading value of input field" + xpath);
+		return driver.findElement(By.xpath(OR.getProperty(xpath))).getAttribute("value");
+	}
+	
+	
 	
 }
