@@ -421,6 +421,34 @@ public class TestBase {
 	}
 	
 	
+	public static void verifyEquals(int value, int value2) throws IOException {
+
+		try {
+
+			boolean state = false;
+			if (value == value2) {
+				state = true;
+			}
+
+			assertTrue(state);
+			test.log(LogStatus.INFO, "Verified " + value + " is equal to " + value2);
+
+		} catch (Throwable t) {
+
+			TestUtil.captureScreenshot();
+			// ReportNG
+			Reporter.log("<br>" + "Verification failure : " + t.getMessage() + "<br>");
+			Reporter.log("<a target=\"_blank\" href=" + TestUtil.screenshotName + "><img src=" + TestUtil.screenshotName
+					+ " height=200 width=200></img></a>");
+			Reporter.log("<br>");
+			Reporter.log("<br>");
+			// Extent Reports
+			test.log(LogStatus.FAIL, " Verification failed with exception : " + t.getMessage());
+			test.log(LogStatus.FAIL, test.addScreenCapture(TestUtil.screenshotName));
+
+		}
+	}
+	
 
 	public static void verifyContains(String text, String word) throws IOException {
 		try {
@@ -617,6 +645,18 @@ public class TestBase {
 
 
 		
+	}
+	
+	public static void upload(String locator, String path) throws InterruptedException {
+		
+		WebElement uploadElement = driver.findElement(By.xpath(OR.getProperty(locator)));
+	     
+       // File file = new File(OR.getProperty(path));
+		 File file = new File(path);
+        uploadElement.sendKeys(file.getAbsolutePath());
+        test.log(LogStatus.INFO, "Uploading file: "+path);
+        
+        Thread.sleep(3000);
 	}
 
 
