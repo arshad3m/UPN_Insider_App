@@ -67,6 +67,10 @@ import java.sql.Statement;
  * @author ArshadM
  *
  */
+/**
+ * @author ArshadM
+ *
+ */
 public class TestBase {
 
 	/*
@@ -181,17 +185,22 @@ public class TestBase {
 			//login();
 
 			
-			wait = new WebDriverWait(driver, 25);
+			wait = new WebDriverWait(driver, 35);
 			action = new Actions(driver);
 			
 			login();
 		}
 
 	}	
-	/**
-	 * @author ArshadM Wrapper mehtod to click on an element
-	 */
 
+	
+	/**
+	 * Clicks on a given element.
+	 * The click will wait to occur until the element is clickable.
+	 * If an exception is thrown from the selenium click, JS click is triggered.
+	 * @param locator - xpath for the element
+	 * @author ArshadM
+	 */
 	public static void click(String locator) {
 
 		try {
@@ -226,8 +235,14 @@ public class TestBase {
 		test.log(LogStatus.INFO, "Clicking on : " + element.toString().replace("_XPATH", ""));
 	}
 
+
+	
 	/**
-	 * @author ArshadM Wrapper method to enter a value in textbox field
+	 * Types into an input field
+	 * 
+	 * @param locator - xpath to the input field
+	 * @param value - String value to be entered in the field
+	 * @author ArshadM
 	 */
 	public static void type(String locator, String value) {
 
@@ -273,24 +288,33 @@ public class TestBase {
 
 	static WebElement dropdown;
 
+
 	/**
-	 * @author ArshadM Wrapper method for selecting a value from a drop down
+	 * Selects the given option from the required dropdown
+	 * @param locator - xpath for the dropdown
+	 * @param value - Visible text or the Value of the option required to be selected
+	 * @author ArshadM
 	 */
 	public void select(String locator, String value) {
+		try {
+			if (locator.endsWith("_CSS")) {
+				dropdown = driver.findElement(By.cssSelector(OR.getProperty(locator)));
+			} else if (locator.endsWith("_XPATH")) {
+				dropdown = driver.findElement(By.xpath(OR.getProperty(locator)));
+			} else if (locator.endsWith("_ID")) {
+				dropdown = driver.findElement(By.id(OR.getProperty(locator)));
+			}
 
-		if (locator.endsWith("_CSS")) {
-			dropdown = driver.findElement(By.cssSelector(OR.getProperty(locator)));
-		} else if (locator.endsWith("_XPATH")) {
-			dropdown = driver.findElement(By.xpath(OR.getProperty(locator)));
-		} else if (locator.endsWith("_ID")) {
-			dropdown = driver.findElement(By.id(OR.getProperty(locator)));
+			Select select = new Select(dropdown);
+			select.selectByVisibleText(value);
+
+			test.log(LogStatus.INFO,
+					"Selecting from dropdown : " + locator.toString().replace("_XPATH", "") + " value as " + value);
+		} catch (NoSuchElementException e) {
+
+			Select select = new Select(dropdown);
+			select.selectByValue(value);
 		}
-
-		Select select = new Select(dropdown);
-		select.selectByVisibleText(value);
-
-		test.log(LogStatus.INFO,
-				"Selecting from dropdown : " + locator.toString().replace("_XPATH", "") + " value as " + value);
 
 	}
 
@@ -312,6 +336,12 @@ public class TestBase {
 
 	}
 
+	/**This method will compare two strings. The case of the strings will be ignored
+	 * @param expected - expected text
+	 * @param actual - actual text
+	 * @throws IOException
+	 * @author ArshadM
+	 */
 	public static void verifyEqualsIgnoreCase(String expected, String actual) throws IOException {
 
 		try {
@@ -421,6 +451,13 @@ public class TestBase {
 	}
 	
 	
+	/**
+	 * Verifies equals of two integers
+	 * @param value - first integer
+	 * @param value2 - second integers
+	 * @author ArshadM
+	 * @throws IOException
+	 */
 	public static void verifyEquals(int value, int value2) throws IOException {
 
 		try {
@@ -450,6 +487,12 @@ public class TestBase {
 	}
 	
 
+	/**
+	 * Verifies 'text' contains 'word'
+	 * @param text - This is the text the search would be operated on
+	 * @param word - This is the keyword to search
+	 * @throws IOException
+	 */
 	public static void verifyContains(String text, String word) throws IOException {
 		try {
 
@@ -647,6 +690,11 @@ public class TestBase {
 		
 	}
 	
+	/**This is a method to upload images 
+	 * @param locator - Specify the upload element
+	 * @param path - Specify the path to the file to upload
+	 * @throws InterruptedException
+	 */
 	public static void upload(String locator, String path) throws InterruptedException {
 		
 		WebElement uploadElement = driver.findElement(By.xpath(OR.getProperty(locator)));
